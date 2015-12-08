@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Welcome</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    </head>
+    
+    
+    <body>
+        <div class="container">
+            <div class="row">
+                <b>Welcome to the chat:</b>
+            </div>    <br><br>
+            
+            <div class="row">
+                {% for msg in msgs %}
+                <div>
+                    {{ msg.author }}  <b>says:</b>
+                </div>
+                
+                <div>
+                    {{ msg.message }}
+                </div>
+                {% endfor %}
+            </div><br><br>
+            
+            <div class="row">
+                <form method="post">{% csrf_token %}
+                    <input type="text" name="msg" placeholder="Your message">
+                    <input type="text" name="user" placeholder="Your nick">
+                    <button type="submit" class="btn btn-default">send</button>
+                </form>
+            </div>
+            
+        </div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{% static 'js/welcome.js' %}"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+
+</html>
